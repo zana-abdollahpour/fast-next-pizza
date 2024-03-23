@@ -1,3 +1,5 @@
+import type { Order, OrderId } from "@/types/apiRestaurant";
+
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
 // fetches the menu items from api
@@ -12,7 +14,7 @@ export async function getMenu() {
 }
 
 // gets an order id and fetches the order from api
-export async function getOrder(id: number) {
+export async function getOrder(id: OrderId) {
   const res = await fetch(`${API_URL}/order/${id}`);
   if (!res.ok) throw Error(`Couldn't find order #${id}`);
 
@@ -20,9 +22,8 @@ export async function getOrder(id: number) {
   return data;
 }
 
-// TODO: change the newOrder type from any to proper type
 // gets an order object and submits it to the backend api
-export async function createOrder(newOrder: any) {
+export async function createOrder(newOrder: Order) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -40,9 +41,8 @@ export async function createOrder(newOrder: any) {
   }
 }
 
-// TODO: change the updateObj type from any to proper type
 // gets an id and updated order object, and updates it on the server
-export async function updateOrder(id: number, updateObj: any) {
+export async function updateOrder(id: OrderId, updateObj: Order) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",
