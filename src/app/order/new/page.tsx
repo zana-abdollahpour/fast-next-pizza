@@ -1,5 +1,5 @@
-import Order from "@/features/order/Order";
+import CreateOrder from "@/features/order/CreateOrder";
 
 export default function CreateOrderPage() {
-  return <Order />;
+  return <CreateOrder />;
 }

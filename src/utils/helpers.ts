@@ -22,3 +22,11 @@ export function calcMinutesLeft(dateStr: string) {
   const d2 = new Date(dateStr).getTime();
   return Math.round((d2 - d1) / 60000);
 }
+
+// checks validity of a given phone number
+export function isValidPhone(str: string) {
+  // https://uibakery.io/regex-library/phone-number
+  return /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
+    str,
+  );
+}

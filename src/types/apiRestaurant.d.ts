@@ -12,11 +12,13 @@ export interface Cart {
 
 export interface Order {
   customer: string;
-  status: string;
+  phone: number;
+  address: string;
   priority: boolean;
+  status?: string;
   cart: Cart[];
-  id: string;
-  estimatedDelivery: string;
-  orderPrice: number;
-  priorityPrice: number;
+  id?: string;
+  estimatedDelivery?: string;
+  orderPrice?: number;
+  priorityPrice?: number;
 }
