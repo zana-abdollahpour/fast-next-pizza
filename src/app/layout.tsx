@@ -1,8 +1,11 @@
+import { Provider } from "react-redux";
 import type { Metadata } from "next";
 import "./globals.css";
 
 import Header from "@/ui/Header";
 import CartOverview from "@/features/cart/CartOverview";
+
+import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
   title: "Fast Next Pizza - Zana AP",
@@ -17,15 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-stone-100 text-stone-700 ">
-        <div className="grid h-screen grid-rows-[auto_1fr_auto]">
-          <Header />
+        <StoreProvider>
+          <div className="grid h-screen grid-rows-[auto_1fr_auto]">
+            <Header />
 
-          <div className="overflow-scroll">
-            <main className="mx-auto max-w-3xl">{children}</main>
+            <div className="overflow-scroll">
+              <main className="mx-auto max-w-3xl">{children}</main>
+            </div>
+
+            <CartOverview />
           </div>
-
-          <CartOverview />
-        </div>
+        </StoreProvider>
       </body>
     </html>
   );

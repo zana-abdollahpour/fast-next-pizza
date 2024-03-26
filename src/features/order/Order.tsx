@@ -23,7 +23,6 @@ export default async function Order({ orderId }: OrderProps) {
     estimatedDelivery,
     cart,
   } = await order;
-  console.log(order);
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 

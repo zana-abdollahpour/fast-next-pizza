@@ -1,3 +1,10 @@
+"use client";
+
+import { useAppSelector } from "@/lib/hooks";
+
 export default function Username() {
-  return <div className="hidden text-sm font-semibold md:block">Zana</div>;
+  const username = useAppSelector((state) => state.user.username);
+  return username ? (
+    <div className="hidden text-sm font-semibold md:block">{username}</div>
+  ) : null;
 }
