@@ -56,6 +56,9 @@ interface State {
 
 export const getCart = (state: State) => state.cart.cart;
 
+export const getCurrentQuantityById = (id: number) => (state: State) =>
+  state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+
 export const getTotalCartQuantity = (state: State) =>
   state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 

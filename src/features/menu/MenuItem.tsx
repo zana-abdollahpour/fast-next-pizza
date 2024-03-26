@@ -4,8 +4,9 @@ import Image from "next/image";
 
 import { formatCurrency } from "@/utils/helpers";
 import Button from "@/ui/Button";
-import { useAppDispatch } from "@/lib/hooks";
-import { addItem } from "@/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { addItem, getCurrentQuantityById } from "@/features/cart/cartSlice";
+import DeleteItem from "@/features/cart/DeleteItem";
 
 import type { Pizza } from "@/features/menu/pizzaTypes";
 
@@ -16,6 +17,8 @@ interface MenuItemsProps {
 export default function MenuItem({ pizza }: MenuItemsProps) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useAppDispatch();
+  const currentQuantity = useAppSelector(getCurrentQuantityById(id));
+  const isInCart = currentQuantity > 0;
 
   function handleAddToCart() {
     const newItem = {
@@ -52,7 +55,9 @@ export default function MenuItem({ pizza }: MenuItemsProps) {
             </p>
           )}
 
-          {!soldOut && (
+          {isInCart && <DeleteItem pizzaId={id} />}
+
+          {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddToCart}>
               Add to cart
             </Button>
