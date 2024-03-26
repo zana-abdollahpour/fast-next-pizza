@@ -3,7 +3,7 @@ import Image from "next/image";
 import { formatCurrency } from "@/utils/helpers";
 import Button from "@/ui/Button";
 
-import type { Pizza } from "@/types/pizza";
+import type { Pizza } from "@/features/menu/pizzaTypes";
 
 interface MenuItemsProps {
   pizza: Pizza;

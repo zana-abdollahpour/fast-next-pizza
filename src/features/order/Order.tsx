@@ -5,7 +5,7 @@ import { calcMinutesLeft, formatCurrency, formatDate } from "@/utils/helpers";
 
 import OrderItem from "./OrderItem";
 
-import type { CartItem } from "@/types/apiRestaurant";
+import type { CartItem } from "@/services/apiRestaurantTypes";
 
 interface OrderProps {
   orderId: string;

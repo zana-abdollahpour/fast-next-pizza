@@ -1,4 +1,4 @@
-import type { Order, OrderId } from "@/types/apiRestaurant";
+import type { Order, OrderId } from "@/services/apiRestaurantTypes";
 
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 

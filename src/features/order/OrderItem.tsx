@@ -1,6 +1,6 @@
 import { formatCurrency } from "@/utils/helpers";
 
-import type { CartItem } from "@/types/apiRestaurant";
+import type { CartItem } from "@/services/apiRestaurantTypes";
 
 interface OrderItemProps {
   item: CartItem;
