@@ -1,11 +1,12 @@
 "use client";
 
 import CreateUser from "@/features/user/CreateUser";
+import { getUsername } from "@/features/user/userSlice";
 import { useAppSelector } from "@/lib/hooks";
 import Button from "@/ui/Button";
 
 export default function HomePage() {
-  const username = useAppSelector((state) => state.user.username);
+  const username = useAppSelector(getUsername);
 
   return (
     <div className="my-10 px-4 text-center sm:my-16">

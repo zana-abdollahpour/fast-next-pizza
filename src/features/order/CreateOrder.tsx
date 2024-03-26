@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 import { submitOrder } from "@/actions/actions";
 import Button from "@/ui/Button";
 import { useAppSelector } from "@/lib/hooks";
+import { getUsername } from "../user/userSlice";
 
 const fakeCart = [
   {
@@ -32,7 +33,7 @@ const fakeCart = [
 
 export default function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
-  const username = useAppSelector((state) => state.user.username);
+  const username = useAppSelector(getUsername);
   const [formState, action] = useFormState(submitOrder, {
     message: "",
   });

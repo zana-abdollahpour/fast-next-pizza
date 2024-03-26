@@ -4,6 +4,7 @@ import LinkButton from "@/ui/LinkButton";
 import Button from "@/ui/Button";
 import CartItem from "./CartItem";
 import { useAppSelector } from "@/lib/hooks";
+import { getUsername } from "../user/userSlice";
 
 const fakeCart = [
   {
@@ -30,7 +31,7 @@ const fakeCart = [
 ];
 
 export default function Cart() {
-  const username = useAppSelector((state) => state.user.username);
+  const username = useAppSelector(getUsername);
 
   const cart = fakeCart;
 
