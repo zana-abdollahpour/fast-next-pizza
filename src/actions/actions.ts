@@ -20,7 +20,7 @@ export async function submitOrder(
     if (typeof customer !== "string" || customer.length < 3)
       return { message: "Name must be longer" };
 
-    if (isValidPhone(phone)) return { message: "Invalid phone number" };
+    if (!isValidPhone(phone)) return { message: "Invalid phone number" };
 
     if (typeof address !== "string" || address.length < 10)
       return { message: "Address must be longer" };

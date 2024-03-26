@@ -38,32 +38,34 @@ export default function CreateOrder() {
   const cart = fakeCart;
 
   return (
-    <div>
-      <h2>Ready to order? Let&apos;s go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">
+        Ready to order? Let&apos;s go!
+      </h2>
 
       <form action={action}>
-        <div>
-          <label>First Name</label>
-          <div>
-            <input className="input" type="text" name="customer" required />
-          </div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input className="input grow" type="text" name="customer" required />
         </div>
 
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input className="input" type="tel" name="phone" required />
-          </div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <input className="input grow" type="tel" name="phone" required />
         </div>
 
-        <div>
-          <label>Address</label>
-          <div>
-            <input className="input" type="text" name="address" required />
-          </div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <input className="input grow" type="text" name="address" required />
         </div>
 
-        <div>
+        {formState?.message && (
+          <div className="my-5 rounded-md border-red-400 bg-red-100 p-2 text-xs text-red-700">
+            {formState.message}
+          </div>
+        )}
+
+        <div className="mb-12 flex items-center gap-5">
           <input
             type="checkbox"
             name="priority"
@@ -72,18 +74,14 @@ export default function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label className="font-medium" htmlFor="priority">
+            Want to yo give your order priority?
+          </label>
         </div>
-
-        {formState?.message ? (
-          <div className="my-2 rounded border border-red-400 bg-red-200 p-2">
-            {formState.message}
-          </div>
-        ) : null}
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button>Order now</Button>
+          <Button type="primary">Order now</Button>
         </div>
       </form>
     </div>
