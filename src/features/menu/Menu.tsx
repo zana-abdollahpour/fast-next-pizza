@@ -7,7 +7,7 @@ export default async function Menu() {
   const menu = await getMenu();
 
   return (
-    <ul>
+    <ul className="divide-y divide-stone-200 px-2">
       {menu.map((pizza: Pizza) => (
         <MenuItem key={pizza.id} pizza={pizza} />
       ))}
