@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 
 import { formatCurrency } from "@/utils/helpers";
 import Button from "@/ui/Button";
+import { useAppDispatch } from "@/lib/hooks";
+import { addItem } from "@/features/cart/cartSlice";
 
 import type { Pizza } from "@/features/menu/pizzaTypes";
 
@@ -11,6 +15,19 @@ interface MenuItemsProps {
 
 export default function MenuItem({ pizza }: MenuItemsProps) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const dispatch = useAppDispatch();
+
+  function handleAddToCart() {
+    const newItem = {
+      pizzaId: id,
+      name,
+      quantity: 1,
+      unitPrice,
+      totalPrice: unitPrice * 1,
+    };
+
+    dispatch(addItem(newItem));
+  }
 
   return (
     <li className="flex gap-4 py-2 pt-1">
@@ -35,7 +52,11 @@ export default function MenuItem({ pizza }: MenuItemsProps) {
             </p>
           )}
 
-          <Button type="small">Add to cart</Button>
+          {!soldOut && (
+            <Button type="small" onClick={handleAddToCart}>
+              Add to cart
+            </Button>
+          )}
         </div>
       </div>
     </li>
