@@ -50,4 +50,16 @@ export const {
   clearCart,
 } = cartSlice.actions;
 
+interface State {
+  cart: CartState;
+}
+
+export const getCart = (state: State) => state.cart.cart;
+
+export const getTotalCartQuantity = (state: State) =>
+  state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+export const getTotalCartPrice = (state: State) =>
+  state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
 export default cartSlice.reducer;
