@@ -9,6 +9,7 @@ import { addItem, getCurrentQuantityById } from "@/features/cart/cartSlice";
 import DeleteItem from "@/features/cart/DeleteItem";
 
 import type { Pizza } from "@/features/menu/pizzaTypes";
+import UpdateItemQuantity from "@/features/cart/UpdateItemQuantity";
 
 interface MenuItemsProps {
   pizza: Pizza;
@@ -55,7 +56,15 @@ export default function MenuItem({ pizza }: MenuItemsProps) {
             </p>
           )}
 
-          {isInCart && <DeleteItem pizzaId={id} />}
+          {isInCart && (
+            <div className="flex items-center gap-3 sm:gap-8">
+              <UpdateItemQuantity
+                pizzaId={id}
+                currentQuantity={currentQuantity}
+              />
+              <DeleteItem pizzaId={id} />
+            </div>
+          )}
 
           {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddToCart}>

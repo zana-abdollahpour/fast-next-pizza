@@ -1,6 +1,9 @@
 import { formatCurrency } from "@/utils/helpers";
 
 import DeleteItem from "./DeleteItem";
+import UpdateItemQuantity from "./UpdateItemQuantity";
+import { useAppSelector } from "@/lib/hooks";
+import { getCurrentQuantityById } from "./cartSlice";
 
 interface CartItemProps {
   item: {
@@ -14,6 +17,7 @@ interface CartItemProps {
 
 export default function CartItem({ item }: CartItemProps) {
   const { pizzaId, name, quantity, totalPrice } = item;
+  const currentQuantity = useAppSelector(getCurrentQuantityById(pizzaId));
 
   return (
     <li className="py-3 sm:flex sm:items-center sm:justify-between">
@@ -22,6 +26,10 @@ export default function CartItem({ item }: CartItemProps) {
       </p>
       <div className="flex items-center justify-between sm:gap-6">
         <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
+        <UpdateItemQuantity
+          pizzaId={pizzaId}
+          currentQuantity={currentQuantity}
+        />
         <DeleteItem pizzaId={pizzaId} />
       </div>
     </li>
