@@ -4,6 +4,7 @@ import { useFormState } from "react-dom";
 
 import { submitOrder } from "@/actions/actions";
 import Button from "@/ui/Button";
+import { useAppSelector } from "@/lib/hooks";
 
 const fakeCart = [
   {
@@ -31,6 +32,7 @@ const fakeCart = [
 
 export default function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
+  const username = useAppSelector((state) => state.user.username);
   const [formState, action] = useFormState(submitOrder, {
     message: "",
   });
@@ -46,7 +48,13 @@ export default function CreateOrder() {
       <form action={action}>
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
-          <input className="input grow" type="text" name="customer" required />
+          <input
+            className="input grow"
+            type="text"
+            name="customer"
+            defaultValue={username}
+            required
+          />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">

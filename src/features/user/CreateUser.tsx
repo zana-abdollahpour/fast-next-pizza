@@ -1,16 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import Button from "@/ui/Button";
+import { useAppDispatch } from "@/lib/hooks";
+import { updateName } from "./userSlice";
 
 import type { FormEvent } from "react";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!username) return;
+
+    dispatch(updateName(username));
+    router.push("/menu");
   }
 
   return (
