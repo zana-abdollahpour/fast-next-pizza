@@ -4,41 +4,21 @@ import { useFormState } from "react-dom";
 
 import { submitOrder } from "@/actions/actions";
 import Button from "@/ui/Button";
-import { useAppSelector } from "@/lib/hooks";
-import { getUsername } from "../user/userSlice";
-
-const fakeCart = [
-  {
-    pizzaId: 12,
-    name: "Mediterranean",
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: "Vegetale",
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: "Spinach and Mushroom",
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { getUsername } from "@/features/user/userSlice";
+import { clearCart, getCart } from "@/features/cart/cartSlice";
+import EmptyCart from "@/features/cart/EmptyCart";
 
 export default function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
   const username = useAppSelector(getUsername);
+  const cart = useAppSelector(getCart);
+  const dispatch = useAppDispatch();
   const [formState, action] = useFormState(submitOrder, {
     message: "",
   });
 
-  const cart = fakeCart;
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-6">
@@ -46,7 +26,7 @@ export default function CreateOrder() {
         Ready to order? Let&apos;s go!
       </h2>
 
-      <form action={action}>
+      <form action={action} onSubmit={() => dispatch(clearCart())}>
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
           <input
