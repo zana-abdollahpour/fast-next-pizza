@@ -4,8 +4,8 @@ import { getOrder } from "@/services/apiRestaurant";
 import { calcMinutesLeft, formatCurrency, formatDate } from "@/utils/helpers";
 
 import OrderItem from "./OrderItem";
-
 import type { CartItem } from "@/services/apiRestaurantTypes";
+import Modal from "@/ui/Modal";
 
 interface OrderProps {
   orderId: string;
@@ -73,6 +73,8 @@ export default async function Order({ orderId }: OrderProps) {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+
+      <Modal>Clear Cart Items?</Modal>
     </div>
   );
 }

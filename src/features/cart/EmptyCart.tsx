@@ -1,6 +1,13 @@
 import LinkButton from "@/ui/LinkButton";
+import Loader from "@/ui/Loader";
 
-export default function EmptyCart() {
+interface EmptyCartProps {
+  isPending?: boolean;
+}
+
+export default function EmptyCart({ isPending = false }: EmptyCartProps) {
+  if (isPending) return <Loader isMini />;
+
   return (
     <div className="px-4 py-3 ">
       <LinkButton href="/menu">&larr; Back to menu</LinkButton>

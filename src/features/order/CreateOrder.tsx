@@ -1,19 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import { useFormState } from "react-dom";
 
 import { submitOrder } from "@/actions/actions";
-import Button from "@/ui/Button";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppSelector } from "@/lib/hooks";
 import { getUsername } from "@/features/user/userSlice";
-import { clearCart, getCart } from "@/features/cart/cartSlice";
 import EmptyCart from "@/features/cart/EmptyCart";
+import { getCart, getTotalCartPrice } from "@/features/cart/cartSlice";
+import Submitter from "./Submitter";
 
 export default function CreateOrder() {
-  // const [withPriority, setWithPriority] = useState(false);
+  const [withPriority, setWithPriority] = useState(false);
+
   const username = useAppSelector(getUsername);
   const cart = useAppSelector(getCart);
-  const dispatch = useAppDispatch();
+  const totalCartPrice = useAppSelector(getTotalCartPrice);
+  const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
+  const totalPrice = totalCartPrice + priorityPrice;
+
   const [formState, action] = useFormState(submitOrder, {
     message: "",
   });
@@ -26,13 +31,14 @@ export default function CreateOrder() {
         Ready to order? Let&apos;s go!
       </h2>
 
-      <form action={action} onSubmit={() => dispatch(clearCart())}>
+      <form action={action} method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
           <input
             className="input grow"
             type="text"
             name="customer"
+            maxLength={24}
             defaultValue={username}
             required
           />
@@ -40,7 +46,14 @@ export default function CreateOrder() {
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Phone number</label>
-          <input className="input grow" type="tel" name="phone" required />
+          <input
+            className="input grow"
+            maxLength={11}
+            minLength={11}
+            type="tel"
+            name="phone"
+            required
+          />
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -60,17 +73,17 @@ export default function CreateOrder() {
             name="priority"
             id="priority"
             className="focus: h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
-            // value={withPriority}
-            // onChange={(e) => setWithPriority(e.target.checked)}
+            checked={withPriority}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label className="font-medium" htmlFor="priority">
-            Want to yo give your order priority?
+            Want to give your order priority?
           </label>
         </div>
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button type="primary">Order now</Button>
+          <Submitter totalPrice={totalPrice} />
         </div>
       </form>
     </div>
