@@ -41,7 +41,7 @@ export default function Modal({ children }: ModalProps) {
             </div>
           </div>
         </div>,
-        document.body,
+        document?.body,
       )
     : null;
 }

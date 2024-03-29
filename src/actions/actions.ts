@@ -1,8 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
-import { createOrder } from "@/services/apiRestaurant";
+import { createOrder, updateOrder } from "@/services/apiRestaurant";
 import { isValidPhone } from "@/utils/helpers";
 
 export async function submitOrder(
@@ -39,4 +40,16 @@ export async function submitOrder(
 
   if (newOrder) redirect(`/order/${newOrder.id}`);
   return newOrder;
+}
+
+export async function makePriority(
+  prevState: { message: string },
+  formData: FormData,
+) {
+  console.log("running!");
+  const order = JSON.parse(formData.get("order") as string);
+  const data = { ...order, priority: true };
+  await updateOrder(order.id, data);
+  revalidatePath(`/order/${order.id}`);
+  return { message: "success" };
 }
