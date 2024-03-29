@@ -5,19 +5,27 @@ import { useFormState } from "react-dom";
 
 import { submitOrder } from "@/actions/actions";
 import { useAppSelector } from "@/lib/hooks";
-import { getUsername } from "@/features/user/userSlice";
 import EmptyCart from "@/features/cart/EmptyCart";
 import { getCart, getTotalCartPrice } from "@/features/cart/cartSlice";
 import Submitter from "./Submitter";
+import LocationGetter from "./LocationGetter";
 
 export default function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
 
-  const username = useAppSelector(getUsername);
   const cart = useAppSelector(getCart);
   const totalCartPrice = useAppSelector(getTotalCartPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
+
+  const {
+    username,
+    position,
+    address,
+    status: addressStatus,
+    error: errorAddress,
+  } = useAppSelector((state) => state.user);
+  const isLoadingAddress = addressStatus === "loading";
 
   const [formState, action] = useFormState(submitOrder, {
     message: "",
@@ -56,16 +64,27 @@ export default function CreateOrder() {
           />
         </div>
 
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+        <div className="relative mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
-          <input className="input grow" type="text" name="address" required />
+          <input
+            className="input grow"
+            type="text"
+            name="address"
+            disabled={isLoadingAddress}
+            defaultValue={address}
+            required
+          />
+          {!position.latitude && !position.longitude && (
+            <LocationGetter disabled={isLoadingAddress} />
+          )}
         </div>
 
-        {formState?.message && (
-          <div className="my-5 rounded-md border-red-400 bg-red-100 p-2 text-xs text-red-700">
-            {formState.message}
-          </div>
-        )}
+        {formState?.message ||
+          (addressStatus === "error" && (
+            <div className="my-5 rounded-md border-red-400 bg-red-100 p-2 text-xs text-red-700">
+              {formState.message || errorAddress}
+            </div>
+          ))}
 
         <div className="mb-12 flex items-center gap-5">
           <input
@@ -83,7 +102,16 @@ export default function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Submitter totalPrice={totalPrice} />
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position.latitude && position.latitude
+                ? `${position.latitude},${position.longitude}`
+                : ""
+            }
+          />
+          <Submitter disabled={isLoadingAddress} totalPrice={totalPrice} />
         </div>
       </form>
     </div>
