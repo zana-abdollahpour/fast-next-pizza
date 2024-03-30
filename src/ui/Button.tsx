@@ -10,6 +10,7 @@ interface ButtonProps {
   onClick?: (() => void) | ((e: FormEvent<HTMLButtonElement>) => void);
 }
 
+// highly dynamic button component to use at different situations with different styles and functionality
 export default function Button({
   children,
   disabled = false,

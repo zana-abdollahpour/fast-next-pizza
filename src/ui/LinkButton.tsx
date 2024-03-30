@@ -5,6 +5,7 @@ interface LinkButtonProps {
   href: string;
 }
 
+// navigation link styled to look like a button
 export default function LinkButton({ children, href }: LinkButtonProps) {
   return (
     <Link

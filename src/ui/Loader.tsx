@@ -1,3 +1,4 @@
+// spinners to show the loading state in ui
 export default function Loader({ isMini = false }: { isMini?: boolean }) {
   if (isMini)
     return (

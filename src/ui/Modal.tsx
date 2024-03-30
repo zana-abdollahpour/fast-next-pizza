@@ -12,6 +12,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
+// modal ui component to ask user's permission to clear their cart after submitting an order
 export default function Modal({ children }: ModalProps) {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useAppDispatch();
