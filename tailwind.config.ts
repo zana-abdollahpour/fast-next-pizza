@@ -13,6 +13,9 @@ const config: Config = {
       height: {
         screen: "100dvh",
       },
+      backgroundImage: {
+        "body-pattern": "url('/pattern.png')",
+      },
     },
   },
   plugins: [],

@@ -19,9 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-stone-100 text-stone-700 ">
+      <body className="bg-body-pattern text-stone-700">
         <StoreProvider>
-          <div className="grid h-screen grid-rows-[auto_1fr_auto]">
+          <div className="mx-auto grid h-screen max-w-7xl grid-rows-[auto_1fr_auto] bg-stone-100">
             <Header />
 
             <div className="overflow-scroll">
