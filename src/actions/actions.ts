@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { createOrder, updateOrder } from "@/services/apiRestaurant";
 import { isValidPhone } from "@/utils/helpers";
 
+// submits the order to backend api
 export async function submitOrder(
   prevState: { message: string },
   formData: FormData,
@@ -42,6 +43,7 @@ export async function submitOrder(
   return newOrder;
 }
 
+// prioritizes an order after it's been submitted, on user's demand
 export async function makePriority(
   prevState: { message: string },
   formData: FormData,
