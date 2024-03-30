@@ -1,4 +1,4 @@
-export default function Loader({ isMini = false }: { isMini: boolean }) {
+export default function Loader({ isMini = false }: { isMini?: boolean }) {
   if (isMini)
     return (
       <div className="fixed left-1/2 top-1/4 flex h-52 w-52 -translate-x-1/2 items-center justify-center p-4">
