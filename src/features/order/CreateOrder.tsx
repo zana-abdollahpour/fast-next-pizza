@@ -79,12 +79,11 @@ export default function CreateOrder() {
           )}
         </div>
 
-        {formState?.message ||
-          (addressStatus === "error" && (
-            <div className="my-5 rounded-md border-red-400 bg-red-100 p-2 text-xs text-red-700">
-              {formState.message || errorAddress}
-            </div>
-          ))}
+        {(formState?.message || addressStatus === "error") && (
+          <div className="my-5 rounded-md border-red-400 bg-red-100 p-2 text-xs text-red-700">
+            {formState.message || errorAddress}
+          </div>
+        )}
 
         <div className="mb-12 flex items-center gap-5">
           <input

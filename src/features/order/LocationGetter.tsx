@@ -10,7 +10,7 @@ export default function LocationGetter({ disabled }: LocationGetterProps) {
   const dispatch = useAppDispatch();
 
   return (
-    <span className="absolute right-0.5 z-50">
+    <span className="absolute right-0.5 top-[2.2rem] z-50 sm:top-[3px]">
       <Button
         disabled={disabled}
         onClick={(e) => {
