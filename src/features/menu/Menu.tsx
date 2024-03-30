@@ -3,6 +3,7 @@ import MenuItem from "./MenuItem";
 
 import type { Pizza } from "@/features/menu/pizzaTypes";
 
+// shows all the available pizzas on the menu
 export default async function Menu() {
   const menu = await getMenu();
 

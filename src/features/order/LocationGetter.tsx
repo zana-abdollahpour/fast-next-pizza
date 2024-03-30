@@ -6,6 +6,7 @@ interface LocationGetterProps {
   disabled: boolean;
 }
 
+// gets the current location of user
 export default function LocationGetter({ disabled }: LocationGetterProps) {
   const dispatch = useAppDispatch();
 

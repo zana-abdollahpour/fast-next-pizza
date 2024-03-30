@@ -5,6 +5,7 @@ interface EmptyCartProps {
   isPending?: boolean;
 }
 
+// handles the state in which cart is currently empty
 export default function EmptyCart({ isPending = false }: EmptyCartProps) {
   if (isPending) return <Loader isMini />;
 

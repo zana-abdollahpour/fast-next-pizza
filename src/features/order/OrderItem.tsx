@@ -6,6 +6,7 @@ interface OrderItemProps {
   item: CartItem;
 }
 
+// shows the individual ordered item in a submitted order
 function OrderItem({ item }: OrderItemProps) {
   const { quantity, name, totalPrice } = item;
 

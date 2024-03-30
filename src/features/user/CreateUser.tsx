@@ -9,6 +9,7 @@ import { updateName } from "./userSlice";
 
 import type { FormEvent } from "react";
 
+// shows the current user's name, or let's them to enter their name
 function CreateUser() {
   const [username, setUsername] = useState("");
   const dispatch = useAppDispatch();

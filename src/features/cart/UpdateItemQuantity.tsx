@@ -7,6 +7,7 @@ interface UpdateItemQuantityProps {
   currentQuantity: number;
 }
 
+// helps the user change the quantity of pizzas in cart
 export default function UpdateItemQuantity({
   pizzaId,
   currentQuantity,

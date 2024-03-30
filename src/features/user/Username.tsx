@@ -3,6 +3,7 @@
 import { useAppSelector } from "@/lib/hooks";
 import { getUsername } from "./userSlice";
 
+// shows the current user's name if it exists
 export default function Username() {
   const username = useAppSelector(getUsername);
   return username ? (

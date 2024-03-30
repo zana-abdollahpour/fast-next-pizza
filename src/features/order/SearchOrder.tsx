@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import type { FormEvent } from "react";
 
+// let's the user search for a specific order by it's ids
 export default function SearchOrder() {
   const [query, setQuery] = useState("");
   const router = useRouter();

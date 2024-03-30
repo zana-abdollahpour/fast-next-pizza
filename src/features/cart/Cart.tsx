@@ -10,6 +10,7 @@ import { clearCart, getCart } from "./cartSlice";
 import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 
+// shows current cart items
 export default function Cart() {
   const username = useAppSelector(getUsername);
   const cart = useAppSelector(getCart);

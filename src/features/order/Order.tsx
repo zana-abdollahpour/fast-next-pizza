@@ -12,6 +12,7 @@ interface OrderProps {
   orderId: string;
 }
 
+// shows the details of a submitted order
 export default async function Order({ orderId }: OrderProps) {
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
   const order = await getOrder(orderId);

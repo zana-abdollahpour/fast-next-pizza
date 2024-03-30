@@ -10,6 +10,7 @@ import { getCart, getTotalCartPrice } from "@/features/cart/cartSlice";
 import Submitter from "./Submitter";
 import LocationGetter from "./LocationGetter";
 
+// let's the user submit his order
 export default function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
 

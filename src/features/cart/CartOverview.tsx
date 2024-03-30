@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getTotalCartPrice, getTotalCartQuantity } from "./cartSlice";
 import { formatCurrency } from "@/utils/helpers";
 
+// shows overall cart info, quantity and price and links to cart page
 export default function CartOverview() {
   const totalCartQuantity = useAppSelector(getTotalCartQuantity);
   const totalCartPrice = useAppSelector(getTotalCartPrice);

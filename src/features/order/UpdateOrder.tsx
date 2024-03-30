@@ -11,6 +11,7 @@ interface UpdateOrderProps {
   order: Order;
 }
 
+// let's the user to update his order, currently just prioritizing it
 export default function UpdateOrder({ order }: UpdateOrderProps) {
   const [formState, action] = useFormState(makePriority, {
     message: "",

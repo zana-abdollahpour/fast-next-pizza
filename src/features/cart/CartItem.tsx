@@ -15,6 +15,7 @@ interface CartItemProps {
   };
 }
 
+// shows individual cart item in cart
 export default function CartItem({ item }: CartItemProps) {
   const { pizzaId, name, quantity, totalPrice } = item;
   const currentQuantity = useAppSelector(getCurrentQuantityById(pizzaId));

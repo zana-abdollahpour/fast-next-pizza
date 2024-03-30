@@ -6,6 +6,7 @@ interface SubmitterProps {
   disabled: boolean;
 }
 
+// let's the user submit his order to the backend
 export default function Submitter({ totalPrice, disabled }: SubmitterProps) {
   return (
     <Button disabled={disabled} type="submit">

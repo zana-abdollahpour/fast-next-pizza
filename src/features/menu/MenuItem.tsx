@@ -15,6 +15,7 @@ interface MenuItemsProps {
   pizza: Pizza;
 }
 
+// shows the individual pizza item in menu with it's details
 export default function MenuItem({ pizza }: MenuItemsProps) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useAppDispatch();

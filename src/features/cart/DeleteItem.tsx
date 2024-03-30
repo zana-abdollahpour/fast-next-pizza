@@ -8,6 +8,7 @@ interface DeleteItemProps {
   pizzaId: number;
 }
 
+// let's the user remove pizza items from cart
 export default function DeleteItem({ pizzaId }: DeleteItemProps) {
   const dispatch = useAppDispatch();
 
