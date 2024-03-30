@@ -1,4 +1,3 @@
-import { Provider } from "react-redux";
 import type { Metadata } from "next";
 import "./globals.css";
 
